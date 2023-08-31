@@ -1,6 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { ModalProvider } from '@/context/modalContext'
+import Box from '@mui/material/Box'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +18,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <ModalProvider>
+        <body>
+          <Box
+            sx={{
+              width: 300,
+              height: 300,
+              flexDirection: 'column',
+              display: 'flex',
+              gap: '10px',
+              padding: '10px',
+            }}
+          >
+            {children}
+          </Box>
+        </body>
+      </ModalProvider>
     </html>
   )
 }
